@@ -14,10 +14,8 @@ export const tabs = [
 export const App = () => {
   const [activeTabId, setActiveTabId] = useState(tabs[0].id);
 
-  const handleTabSelected = id => {
-    if (id !== activeTabId) {
-      setActiveTabId(id);
-    }
+  const handleTabSelected = tabId => {
+    setActiveTabId(tabId);
   };
 
   return (
@@ -26,11 +24,13 @@ export const App = () => {
         Selected tab is {tabs.find(tab => tab.id === activeTabId)?.title}
       </h1>
 
-      <Tabs
-        tabs={tabs}
-        activeTabId={activeTabId}
-        onTabSelected={handleTabSelected}
-      />
+      <div data-cy="TabsComponent">
+        <Tabs
+          tabs={tabs}
+          activeTabId={activeTabId}
+          onTabSelected={handleTabSelected}
+        />
+      </div>
     </div>
   );
 };
