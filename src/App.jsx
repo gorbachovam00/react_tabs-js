@@ -14,16 +14,15 @@ export const tabs = [
 export const App = () => {
   const [activeTab, setActiveTab] = useState(tabs[0].id);
 
-  const activeTabData = tabs.find(tab => tab.id === activeTab) || tabs[0];
-
   const handleTabClick = id => {
     setActiveTab(id);
   };
 
   return (
     <div className="section">
-      {/* Display the title of the active tab in the header */}
-      <h1 className="title">Selected tab is {activeTabData.title}</h1>
+      <h1 className="title">
+        Selected tab is {tabs.find(tab => tab.id === activeTab)?.title}
+      </h1>
 
       <div data-cy="TabsComponent">
         <Tabs
@@ -31,10 +30,6 @@ export const App = () => {
           activeTab={activeTab}
           handleTabClick={handleTabClick}
         />
-
-        <div className="block" data-cy="TabContent">
-          {activeTabData.content}
-        </div>
       </div>
     </div>
   );
